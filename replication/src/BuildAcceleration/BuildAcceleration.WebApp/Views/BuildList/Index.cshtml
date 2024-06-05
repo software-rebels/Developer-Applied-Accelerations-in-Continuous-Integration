@@ -1,0 +1,40 @@
+﻿@model IEnumerable<object>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            @foreach (var property in Model.First().GetType().GetProperties())
+            {
+                <th>
+                    @property.Name
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @foreach (var property in Model.First().GetType().GetProperties())
+                {
+                    <td>
+                        @if (property.PropertyType == typeof(Uri))
+                        {
+                            <a href="@property.GetValue(item)">Link</a>
+                        }
+                        else
+                        {
+                            @property.GetValue(item)
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,83 @@
+﻿@using ForecastBuildTime.MongoDBModels;
+@model BuildEntry
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>@ViewBag.Repo</h1>
+
+<h2>Step times</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Step name
+            </th>
+            <th>
+                Time elapsed
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var step in Model.Steps)
+        {
+            <tr>
+                <td>
+                    @step.Name
+                </td>
+                <td align="right">
+                    @if (step.Actions is [{ RunTimeMillis: not null } ac])
+                    {
+                        @TimeSpan.FromMilliseconds(ac.RunTimeMillis.Value)
+                    }
+                    else if (step.Actions is [_, _, ..])
+                    {
+                        @foreach (var a in step.Actions)
+                        {
+                            if (a.RunTimeMillis is not null)
+                            {
+                                @a.Index
+                                @TimeSpan.FromMilliseconds(a.RunTimeMillis.Value)
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Build parameters</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Key
+            </th>
+            <th>
+                Value
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var parameter in Model.BuildParameters ?? Enumerable.Empty<KeyValuePair<string, string>>())
+        {
+            <tr>
+                <td>
+                    @parameter.Key
+                </td>
+                <td>
+                    @parameter.Value
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Circle YAML</h2>
+
+<pre>
+@Model.CircleYml?.String
+</pre>

@@ -1,0 +1,44 @@
+﻿@using System.Text.Json
+@model System.Collections.IEnumerable
+@{
+    ViewData["Title"] = "title";
+}
+
+<h2>@ViewBag.Repo</h2>
+<div id="container" style="width: 100%; height: 800px"></div>
+<p>Higher Center: @ViewBag.Higher</p>
+<p>Lower Center: @ViewBag.Lower</p>
+<p>Split At: @ViewBag.SplitAt</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js"></script>
+<script type="text/javascript">
+    var myChart = echarts.init(
+        document.getElementById('container'), null,
+        { renderer: 'svg' }
+    );
+    var option = {
+        legend: @Html.Raw(JsonSerializer.Serialize(ViewBag.Legend)),
+        xAxis: {
+            type: "category",
+            data: @Html.Raw(JsonSerializer.Serialize(ViewBag.Categories))
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                type: 'bar',
+                data: @Html.Raw(JsonSerializer.Serialize(ViewBag.Data))
+            }
+        ],
+        // toolbox: {
+        //     feature: {
+        //         saveAsImage: {
+        //             type: 'svg',
+        //         }
+        //     }
+        // }
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>

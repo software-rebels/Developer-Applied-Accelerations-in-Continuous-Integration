@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>ForecastBuildTime</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ConsoleTables" Version="2.4.2" />
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="LibGit2Sharp" Version="0.27.2" />
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.0.2" />
+    <PackageReference Include="McMaster.Extensions.Hosting.CommandLine" Version="4.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Octokit" Version="5.0.4" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="pythonnet" Version="3.0.1" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+    <PackageReference Include="YamlDotNet" Version="13.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BuildAcceleration.Algorithms\BuildAcceleration.Algorithms.csproj" />
+    <ProjectReference Include="..\BuildAcceleration.MongoDBModels\BuildAcceleration.MongoDBModels.csproj" />
+    <ProjectReference Include="..\BuildAcceleration.SqlModels\BuildAcceleration.SqlModels.csproj" />
+  </ItemGroup>
+
+</Project>
