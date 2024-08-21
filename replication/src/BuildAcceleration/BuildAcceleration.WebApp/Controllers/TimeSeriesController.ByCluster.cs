@@ -19,7 +19,7 @@ public partial class TimeSeriesController : Controller
     {
         var vcsUrl = "https://github.com/" + repo;
         ViewBag.Repo = repo;
-        // test url: https://deprecated/TimeSeries/ForecastByWindowSize?repo=diem/diem&job=code_coverage&branch=master&why=github&forecastAll=true&where=(%22AttachedProperties%22-%3E%27build_of_day%27)::integer!%3D1
+        // test url: https://aws-forecast.b11p.com/TimeSeries/ForecastByWindowSize?repo=diem/diem&job=code_coverage&branch=master&why=github&forecastAll=true&where=(%22AttachedProperties%22-%3E%27build_of_day%27)::integer!%3D1
         IQueryable<BuildEntrySlim> filtering = string.IsNullOrWhiteSpace(where)
             ? forecastingContext.Builds
             : forecastingContext.Builds.FromSqlRaw($"SELECT * FROM \"Builds\" WHERE {where}");

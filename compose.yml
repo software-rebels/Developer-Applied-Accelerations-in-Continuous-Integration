@@ -1,0 +1,49 @@
+name: dev-applied-accel
+services:
+    mongo:
+        container_name: dev-applied-accel-mongo
+        restart: always
+        networks:
+            my_net:
+                aliases:
+                    - forecast-mongo
+        pull_policy: always
+        ports:
+            - "27017:27017"
+        volumes:
+            - ./mongodb:/data/db
+        image: mongo:5
+        command: --wiredTigerCacheSizeGB=0.75
+    postgres:
+        container_name: dev-applied-accel-pg
+        restart: always
+        networks:
+            my_net:
+                aliases:
+                    - forecast-pg
+        user: 1000:1000
+        ports:
+            - 13339:13339
+        volumes:
+            - ./postgresql/data:/var/lib/postgresql/data
+            - ./postgresql/postgresql.conf:/etc/postgresql/postgresql.conf
+        environment:
+            - POSTGRES_PASSWORD=Ie98Az0R2jjrNKHeEJFGtbRpxrZLN0xB
+        image: postgres:13
+        command: -c port=13339
+    aspnet:
+        container_name: dev-applied-accel-web
+        build:
+          context: .
+          dockerfile: Dockerfile
+        # image: dev-applied-accel-web:latest
+        ports:
+          - "8080:8080"
+        working_dir: /app
+        restart: always
+        networks:
+            - my_net
+networks:
+    my_net:
+        external: false
+        name: my_net

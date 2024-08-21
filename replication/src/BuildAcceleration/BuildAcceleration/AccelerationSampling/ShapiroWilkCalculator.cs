@@ -26,7 +26,7 @@ public class ShapiroWilkCalculator
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            Runtime.PythonDLL = @"C:\Users\*\AppData\Local\Programs\Python\Python310\python310.dll";
+            Runtime.PythonDLL = @"C:\Users\yinmi\AppData\Local\Programs\Python\Python310\python310.dll";
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
