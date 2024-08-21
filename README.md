@@ -7,10 +7,10 @@
 The data files include the following:
 
 ### Dataset
-This directory contains the dataset that we used for our study, which is [TODO: EXACT SIZE] GB in size. We recommend using Btrfs with the compression feature enabled, which reduces the footprint of the dataset to [TODO: EXACT SIZE] GB (compression is an optional file system feature and has no effect to the data). The artifact contains:
+This directory contains the dataset that we used for our study, which is 235 GB in size. We recommend using Btrfs with the compression feature enabled, which reduces the footprint of the dataset to 46 GB (compression is an optional file system feature and has no effect to the data). The artifact contains:
 
-- The `mongodb` directory, which contains the CircleCI dataset in the MongoDB data format after filtering has been applied.
-- The `postgresql` directory, which contains data after processing has been applied (e.g., clustered data). This data provides the input for the web app, so that the expensive clustering computation is only performed once.
+- The `mongodb` directory (220GB), which contains the CircleCI dataset in the MongoDB data format after filtering has been applied.
+- The `postgresql` directory (15GB), which contains data after processing has been applied (e.g., clustered data). This data provides the input for the web app, so that the expensive clustering computation is only performed once.
 
 ### Inspection
 This directory contains the results of our manual inspection. The artifact contains:
