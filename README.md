@@ -1,6 +1,16 @@
 # Developer-Defined Accelerations in Continuous Integration: A Detection Approach and Catalog of Patterns
+
+> [!NOTE]
+> This replication package has been tested on amd64 architecture with Ubuntu 24.04 operating system.
+
 ## Replication
 Our dataset is very large (about 1TB uncompressed, ~100GB compressed). We did not find a hosting service which can host such large files while keep anonymous during the review process. Hence, our dataset is available on request. This repository contains the inspection results.
+
+### Setup
+
+1. The following steps have been tested on a venilla Ubuntu Server 24.04 system. If you use other operating systems, be aware that your environment may differ from the authors', so adjust the relative command when necessary.
+2. Install Docker. The recommended way is to use the script:
+
 
 ### RQ1
 #### Manual Inspection
