@@ -7,7 +7,7 @@
 The data files include the following:
 
 ### Dataset
-This directory contains the dataset that we used for our study, which is [TODO: EXACT SIZE] GB in size. We recommend using Btrfs with the compression feature enabled, which reduces the footprint of the dataset to [TODO: EXACT SIZE] GB. The artifact contains:
+This directory contains the dataset that we used for our study, which is [TODO: EXACT SIZE] GB in size. We recommend using Btrfs with the compression feature enabled, which reduces the footprint of the dataset to [TODO: EXACT SIZE] GB (compression is an optional file system feature and has no effect to the data). The artifact contains:
 
 - The `mongodb` directory, which contains the CircleCI dataset in the MongoDB data format after filtering has been applied.
 - The `postgresql` directory, which contains data after processing has been applied (e.g., clustered data). This data provides the input for the web app, so that the expensive clustering computation is only performed once.
@@ -41,15 +41,16 @@ This directory contains the tool that we developed to conduct this study, includ
     sudo usermod -aG docker $USER
     ```
     After executing these commands, logout of the machine and log back in. Verify this step by executing `docker ps -a`, which should produce output that looks like:
-   ```
-   TODO: Expected output
-   ```
+    ```
+    CONTAINER ID   IMAGE           COMMAND                   CREATED        STATUS        PORTS     NAMES
+    ```
+    This output indicates that you have successfully installed Docker and currently there is no running container.
 4. **Install .NET SDK**: Execute the following command:
     ```sh
     sudo apt update
     sudo apt install -y dotnet-sdk-8.0
     ```
-5. **Prepare data files**: Place all of the files mentioned above in the same folder. [TODO: This is unclear. I do not know what files are being referenced here.]
+5. **Prepare data files**: Place all of the files mentioned in the “Data” section to the same folder. <!-- [TODO: This is unclear. I do not know what files are being referenced here.] -->
 
 ## Usage
 In this section, we describe how to use the data and code to reproduce the results that we present in our paper.
