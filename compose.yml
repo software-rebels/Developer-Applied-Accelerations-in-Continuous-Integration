@@ -4,7 +4,9 @@ services:
         container_name: dev-applied-accel-mongo
         restart: always
         networks:
-            - my_net
+            my_net:
+                aliases:
+                    - forecast-mongo
         pull_policy: always
         ports:
             - "27017:27017"
@@ -16,7 +18,9 @@ services:
         container_name: dev-applied-accel-pg
         restart: always
         networks:
-            - my_net
+            my_net:
+                aliases:
+                    - forecast-pg
         user: 1000:1000
         ports:
             - 13339:13339
