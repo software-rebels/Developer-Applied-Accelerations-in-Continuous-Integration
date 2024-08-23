@@ -12,6 +12,9 @@ This directory contains the dataset that we used for our study, which is 235 GB 
 - The `mongodb` directory (220GB), which contains the CircleCI dataset in the MongoDB data format after filtering has been applied.
 - The `postgresql` directory (15GB), which contains data after processing has been applied (e.g., clustered data). This data provides the input for the web app, so that the expensive clustering computation is only performed once.
 
+> [!NOTE]
+> The datasets (i.e., the `mongodb` and `postgresql` directories) are distributed separately, as a compressed format `.tar.zst`. Please download the files [here]() **TODO: upload file**
+
 ### Inspection
 This directory contains the results of our manual inspection. The artifact contains:
 
@@ -20,7 +23,7 @@ This directory contains the results of our manual inspection. The artifact conta
     - `k-means-with-rule.csv`:  The detected ratio of each build job with respect to the rule-based detection approach.
     - `KMeansCluster.csv`: K-means clustering data of each job on a monthly basis (including the mean and variance measurements).
     - `KMeansClusterRatio.csv`: The calculated ratio of each project.
-    - `long-tail.csv`: The long-tail data. [NOTE: We need to explain what this is]
+    - `long-tail.csv`: The long-tail data of Figure 2 in the paper.
     - `rq1_inspection_agreed.csv` and `rq1_inspection.xlsx`: The inspection results of RQ1 in `.csv` and `.xlsx` formats.
     - `rq2_classification.xlsx` and `rq2_Final Labels.csv`: The results of the classification inspection of RQ2.
     - `ruled_detection.csv`: Results of rule-based detection approach.
@@ -45,40 +48,48 @@ This directory contains the tool that we developed to conduct this study, includ
     CONTAINER ID   IMAGE           COMMAND                   CREATED        STATUS        PORTS     NAMES
     ```
     This output indicates that you have successfully installed Docker and currently there is no running container.
-4. **Install .NET SDK**: Execute the following command:
+4. **Prepare data files**: Place all of the files mentioned in the “Data” section to the same folder. Extract the `mongodb.tar.zst` and `postgresql.tar.zst` files.
     ```sh
-    sudo apt update
-    sudo apt install -y dotnet-sdk-8.0
+    tar --zstd -xvf mongodb.tar.zst
+    tar --zstd -xvf postgresql.tar.zst
     ```
-5. **Prepare data files**: Place all of the files mentioned in the “Data” section to the same folder. <!-- [TODO: This is unclear. I do not know what files are being referenced here.] -->
+    After extracting, you should have `mongodb` and `postgresql` folders.
 
 ## Usage
 In this section, we describe how to use the data and code to reproduce the results that we present in our paper.
 
-### RQ1
-#### Manual Inspection
+### Check Dataset (Optional)
+
+If you want to peek the dataset, use any database software such as DataGrip or official command line tool.
+
+- To check the build data in our dataset, connect to `mongodb://ip:27017/forecastBuildTime`, where `ip` is the IP address where you run the dataset.
+  > [!NOTE]
+  > Leave user name blank as auth.
+- To check our processed data, connect to `postgresql://ip:13339/forecasting`
+  > [!NOTE]
+  > User name: postgres
+  >
+  > Password: Ie98Az0R2jjrNKHeEJFGtbRpxrZLN0xB
+
+### Manual Inspection Results
+#### RQ1
 The samples and their inspection results are stored in the `rq1_inspection.xlsx` file. The `rq1_inspection_agreed.csv` file presents the same data in a format that is easier to process.
 
-#### Evaluation
-Change working directories to the `src/BuildAcceleration/BuildAcceleration` directory, and then execute `dotnet run -- -h`.
-
-- To calculate clusters and ratios, execute the `dotnet run -- cluster` command (this requires the full [TODO: Size] GB dataset, which is available on request). [TODO: I don't think this is good enough any more. Did the UW library provide us with a way to share our large data set?]
-- To detect accelerated jobs by rules, execute the `dotnet run -- detect` command (this also requires the dataset).
-
-Note that the results of clustering `KMeansCluster.csv` and `KMeansClusterRatio.csv` are located in the replication directory. The detection results appear in the `ruled_detection.csv` file, which is also placed in the replication directory. [TODO: Please check this carefully, as I tried to clarify the text, but it was unclear to me what we were trying to say.]
-
-### RQ2 
-#### Detection
-To detect accelerated jobs, execute the `dotnet run -- cluster --all` and `dotnet run -- detect --all` commands (requires dataset). These commands produce `k-means_all.csv` and `ruled_detection.csv`. Then, using a spreadsheet editor like Excel, select the detected jobs based on your preferred threshold.
-
-#### Manual Inspection
+#### RQ2
 The inspection results are stored in the `rq2_classification.xlsx` file. The `rq2_Final Labels.csv` file presents the same data in a format that is easier to process.
 
-#### Processing (Converting labels to patterns)
-As described in the paper, the labels are full sentences. To convert them to the pattern names, first, place the following files:
+> [!NOTE]
+> If you find any link in the file to `https://aws-forecast.b11p.com`, please replace the schema and host with `http://ip:8080`. We did not do this replacement in the file as the actual IP address is from your environment.
 
-- `rq2_Final Labels.csv` to `Desktop/build_accel/Final Labels.csv`. [TODO: Why are these paths saying `Desktop`?]
-- `KMeansClusterRatio.csv` to `Desktop/build_accel/KMeansClusterRatio.csv`.
-- `rq1_inspection_agreed.csv` to `Desktop/build_accel/inspection_agreed.csv`.
+### Clustering
+- To check the clustering result, go to the `KMeansClusters` table in the postgres data. The table contains the centers of the longer and shorter clusters.
+- Also, use the following link to check data. Remember to replace `repo` and `job` parameters with what you want to query:
 
-Then, execute the `dotnet run -- count-categories` command. The results will be stored in the `Desktop/build_accel` directory. Note that we did further modifications to the category and pattern names, so there might be a very slight difference from the names in the paper. [TODO: This needs to be clarified or the script output needs to be updated to match the paper results.]
+  <http://vm2:8080/TimeSeries/ByCluster?repo=diem/diem&job=code_coverage>
+
+  This link shows the build durations of each build (like Figure 3 in the paper). Only if there are data available: The lower and higher clusters are represented in different colors. The line represents the percentage of builds in the lower cluster of each month.
+
+### Detection
+The location of detection results `k-means_all.csv` and `ruled_detection.csv`. Use a spreadsheet editor like Excel to check the results of detection, including the ratio from clustering-based approach and the results from rule-based approach.
+
+Note that the results of clustering `KMeansCluster.csv` and `KMeansClusterRatio.csv` are located in the replication directory. Please check the “Data-Inspection” section of this README to find explaination.
