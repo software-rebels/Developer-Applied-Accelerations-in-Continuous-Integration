@@ -269,7 +269,7 @@ internal class KMeansCluster
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            Runtime.PythonDLL = @"C:\Users\*\AppData\Local\Programs\Python\Python310\python310.dll";
+            Runtime.PythonDLL = @"C:\Users\yinmi\AppData\Local\Programs\Python\Python310\python310.dll";
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
@@ -280,7 +280,7 @@ internal class KMeansCluster
         {
             Runtime.PythonDLL =
                 // "/opt/homebrew/opt/python@3.10/Frameworks/Python.framework/Versions/3.10/lib/libpython3.10.dylib";
-                "/Users/*/opt/anaconda3/lib/libpython3.9.dylib";
+                "/Users/ymy/opt/anaconda3/lib/libpython3.9.dylib";
         }
         else
         {

@@ -1,4 +1,4 @@
-﻿Id,VcsUrl,Repo,JobName,Preview Link,Pattern,subtype,Remark_1,Inspection_2,,Remark_2,Count/Month,Count,Original order,formalizedResults_1,formalizedResults_2,formalizedResults,agreed,,,,,,
+﻿Id,VcsUrl,Repo,JobName,Preview Link,Pattern,subtype,Remark_kashiwa,Inspection_yin,,Remark_yin,Count/Month,Count,Original order,formalizedResults_Kashiwa,formalizedResults_yin,formalizedResults,agreed,,,,,,
 38290,https://github.com/envoyproxy/envoy,envoyproxy/envoy,format,format,no,,,no,,no acceleration,1227,17126,1,no,no,no,agreed,agreed:,,,,,
 38858,https://github.com/qlik-oss/after-work.js,qlik-oss/after-work.js,test-protractor,test-protractor,yes,Pattern1,restore_cache: *restore_yarn_cache (https://circleci.com/docs/configuration-reference/#restorecache),pat1,cache,has yarn cache,203,700,2,no,no,no,agreed,310,,,,,
 55049,https://github.com/apollographql/apollo-link,apollographql/apollo-link,Apollo Link Schema,Apollo Link Schema,no,,dependency cache (https://circleci.com/docs/caching/),no,,"attach_workspace shares data between jobs, not builds",338,1328,3,no,no,no,agreed,conflicted:,,,,,
@@ -214,7 +214,7 @@ Update: saved.",279,1069,128,no,no,no,agreed,,,,,,
 38082,https://github.com/simdjson/simdjson,simdjson/simdjson,clang6,clang6,no,,,no,,,290,1528,163,no,no,no,agreed,,,,,,
 49635,https://github.com/citusdata/citus,citusdata/citus,test-12_check-mx,test-12_check-mx,no,,,no,,,599,1861,164,no,no,no,agreed,,,,,,
 34837,https://github.com/electron/electron,electron/electron,linux-arm-debug,linux-arm-debug,yes?,Pattern1 and Pattern2,cashe and SKIP_DIST_ZIP?,pat1&pat2,cache,"cache only restore
-https://deprecated/BuildDetails?repo=electron%2felectron&job=linux-arm-debug&commit_id=68873fbadb2534f43ebbf45523a055ff6f987ae5
+https://aws-forecast.b11p.com/BuildDetails?repo=electron%2felectron&job=linux-arm-debug&commit_id=68873fbadb2534f43ebbf45523a055ff6f987ae5
 ""Check if commit is doc only change""",1149,13026,165,yes,yes,yes,agreed,,changed,,,,
 40301,https://github.com/drud/ddev,drud/ddev,golang_test_apache_cgi,golang_test_apache_cgi,no,,,no,,,225,730,166,no,no,no,agreed,,,,,,
 32959,https://github.com/influxdata/influxdb,influxdata/influxdb,jstest,jstest,yes?,Pattern1 and Pattern2,cache and tag?,pat1?,cache?,cache is in jsdeps,1404,20213,167,no,no,no,agreed,,,,,,
