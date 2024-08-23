@@ -63,13 +63,13 @@ In this section, we describe how to use the data and code to reproduce the resul
 If you want to peek the dataset, use any database software such as DataGrip or official command line tool.
 
 - To check the build data in our dataset, connect to `mongodb://ip:27017/forecastBuildTime`, where `ip` is the IP address where you run the dataset.
-  > [!NOTE]
-  > Leave user name blank as auth.
+
+  Leave user name blank as auth.
 - To check our processed data, connect to `postgresql://ip:13339/forecasting`
-  > [!NOTE]
-  > User name: postgres
-  >
-  > Password: Ie98Az0R2jjrNKHeEJFGtbRpxrZLN0xB
+
+  User name: postgres
+
+  Password: Ie98Az0R2jjrNKHeEJFGtbRpxrZLN0xB
 
 ### Manual Inspection Results
 #### RQ1
@@ -85,7 +85,7 @@ The inspection results are stored in the `rq2_classification.xlsx` file. The `rq
 - To check the clustering result, go to the `KMeansClusters` table in the postgres data. The table contains the centers of the longer and shorter clusters.
 - Also, use the following link to check data. Remember to replace `repo` and `job` parameters with what you want to query:
 
-  <http://vm2:8080/TimeSeries/ByCluster?repo=diem/diem&job=code_coverage>
+  <http://ip:8080/TimeSeries/ByCluster?repo=diem/diem&job=code_coverage>
 
   This link shows the build durations of each build (like Figure 3 in the paper). Only if there are data available: The lower and higher clusters are represented in different colors. The line represents the percentage of builds in the lower cluster of each month.
 
