@@ -48,13 +48,13 @@ This directory contains the tool that we developed to conduct this study, includ
     CONTAINER ID   IMAGE           COMMAND                   CREATED        STATUS        PORTS     NAMES
     ```
     This output indicates that you have successfully installed Docker and currently there is no running container.
-4. **Prepare data files**: Clone the repository and download `mongodb.tar.zst` and `postgresql.tar.zst` to the repository folder. Then extract the `mongodb.tar.zst` and `postgresql.tar.zst` files.
+4. **Prepare Data Files**: Clone the repository and download `mongodb.tar.zst` and `postgresql.tar.zst` to the repository folder. Then extract the `mongodb.tar.zst` and `postgresql.tar.zst` files.
     ```sh
     tar --zstd -xvf mongodb.tar.zst
     tar --zstd -xvf postgresql.tar.zst
     ```
     After extracting, you should have `mongodb` and `postgresql` folders.
-5. **Launch database instances**: Run the following command to launch database instances
+5. **Launch Database Instances**: Run the following command to launch database instances
     ```sh
     docker compose up -d
     ```
@@ -90,21 +90,21 @@ If you want to peek the dataset, use any database software such as DataGrip or o
 
 ### Manual Inspection Results
 #### RQ1
-The samples and their inspection results are stored in the `rq1_inspection.xlsx` file. The `rq1_inspection_agreed.csv` file presents the same data in a format that is easier to process.
+The samples and inspection results are stored in the `rq1_inspection.xlsx` file. The `rq1_inspection_agreed.csv` file presents the same data in a format that is easier to process.
 
 #### RQ2
 The inspection results are stored in the `rq2_classification.xlsx` file. The `rq2_Final Labels.csv` file presents the same data in a format that is easier to process.
 
 > [!NOTE]
-> If you find any link in the file to `https://aws-forecast.b11p.com`, please replace the schema and host with `http://ip:8080`. We did not do this replacement in the file as the actual IP address is from your environment.
+> If you find any link in the file to `https://aws-forecast.b11p.com`, please replace the schema and host with `http://ip:8080`. We did not do this replacement in the file as the actual IP address comes from your environment.
 
 ### Clustering
 - To check the clustering result, go to the `KMeansClusters` table in the postgres data. The table contains the centers of the longer and shorter clusters.
 - Also, use the following link to check data. Remember to replace `repo` and `job` parameters with what you want to query:
 
-  <http://ip:8080/TimeSeries/ByCluster?repo=diem/diem&job=code_coverage> (Be sure to complete the setup steps and replace ip with your actual IP address)
+  <http://ip:8080/TimeSeries/ByCluster?repo=diem/diem&job=code_coverage> (Be sure to complete the setup steps and replace IP with your actual IP address)
 
-  This link shows the build durations of each build (like Figure 3 in the paper). Only if there are data available: The lower and higher clusters are represented in different colors. The line represents the percentage of builds in the lower cluster of each month.
+  This link shows the build durations of each build (like Figure 3 in the paper). Only if there is data available: The lower and higher clusters are represented in different colors. The line represents the percentage of builds in the lower cluster of each month.
 
 ### Detection
 The location of detection results `k-means_all.csv` and `ruled_detection.csv`. Use a spreadsheet editor like Excel to check the results of detection, including the ratio from clustering-based approach and the results from rule-based approach.
