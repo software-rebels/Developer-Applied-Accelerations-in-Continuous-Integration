@@ -48,12 +48,29 @@ This directory contains the tool that we developed to conduct this study, includ
     CONTAINER ID   IMAGE           COMMAND                   CREATED        STATUS        PORTS     NAMES
     ```
     This output indicates that you have successfully installed Docker and currently there is no running container.
-4. **Prepare data files**: Place all of the files mentioned in the “Data” section to the same folder. Extract the `mongodb.tar.zst` and `postgresql.tar.zst` files.
+4. **Prepare data files**: Clone the repository and download `mongodb.tar.zst` and `postgresql.tar.zst` to the repository folder. Then extract the `mongodb.tar.zst` and `postgresql.tar.zst` files.
     ```sh
     tar --zstd -xvf mongodb.tar.zst
     tar --zstd -xvf postgresql.tar.zst
     ```
     After extracting, you should have `mongodb` and `postgresql` folders.
+5. **Launch database instances**: Run the following command to launch database instances
+    ```sh
+    docker compose up -d
+    ```
+    You should see the following output:
+    ```
+    ✔ Container dev-applied-accel-web    Running
+    ✔ Container dev-applied-accel-mongo  Running
+    ✔ Container dev-applied-accel-pg     Running
+    ```
+
+### Clean
+When you finish using the dataset, run the command to stop:
+
+```sh
+docker compose down
+```
 
 ## Usage
 In this section, we describe how to use the data and code to reproduce the results that we present in our paper.
@@ -85,7 +102,7 @@ The inspection results are stored in the `rq2_classification.xlsx` file. The `rq
 - To check the clustering result, go to the `KMeansClusters` table in the postgres data. The table contains the centers of the longer and shorter clusters.
 - Also, use the following link to check data. Remember to replace `repo` and `job` parameters with what you want to query:
 
-  <http://ip:8080/TimeSeries/ByCluster?repo=diem/diem&job=code_coverage>
+  <http://ip:8080/TimeSeries/ByCluster?repo=diem/diem&job=code_coverage> (Be sure to )
 
   This link shows the build durations of each build (like Figure 3 in the paper). Only if there are data available: The lower and higher clusters are represented in different colors. The line represents the percentage of builds in the lower cluster of each month.
 
