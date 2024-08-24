@@ -102,7 +102,7 @@ The inspection results are stored in the `rq2_classification.xlsx` file. The `rq
 - To check the clustering result, go to the `KMeansClusters` table in the postgres data. The table contains the centers of the longer and shorter clusters.
 - Also, use the following link to check data. Remember to replace `repo` and `job` parameters with what you want to query:
 
-  <http://ip:8080/TimeSeries/ByCluster?repo=diem/diem&job=code_coverage> (Be sure to )
+  <http://ip:8080/TimeSeries/ByCluster?repo=diem/diem&job=code_coverage> (Be sure to complete the setup steps and replace ip with your actual IP address)
 
   This link shows the build durations of each build (like Figure 3 in the paper). Only if there are data available: The lower and higher clusters are represented in different colors. The line represents the percentage of builds in the lower cluster of each month.
 
